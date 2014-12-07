@@ -56,7 +56,6 @@ def dict_attck(host, user, key):
     print '[-] Failed Key: %s' %(key)
   except Exception as e:
     print '[-] Failed Key: %s' %(key)
-    print e
     # In any other case (timeout, server closed connection) it will restart the client and continue the procedure
     client = paramiko.SSHClient()
     client.load_system_host_keys()

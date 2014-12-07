@@ -10,7 +10,7 @@ class Client:
     self.host = host
     self.user = user
     self.passwd = passwd
-    client = SSHClient()
+    client = paramiko.SHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     client.connect(host, username=self.user, password=self.passwd)
   def send_command(self, cmd):
