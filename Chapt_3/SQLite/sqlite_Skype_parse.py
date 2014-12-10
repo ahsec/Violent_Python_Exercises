@@ -43,10 +43,39 @@ def cond_print(text, var):
     else:
       print text + var
 
+def printCallLog(skypeDB):
+  conn = sqlite3.connect(skypeDB)
+  c = conn.cursor()
+  c.execute("SELECT datetime(begin_timestamp, 'unixepoch'), identity FROM calls, "+\
+            "conversations WHERE calls.conv_dbid = conversations.id;")
+  print '\n[!] Calls Found: '
+  for row in c:
+    print '  [x] Time: %s  -> Partner: %s' %(str(row[0]), str(row[1]))
+
+def printMessages(skypeDB):
+  conn = sqlite3.connect(skypeDB)
+  c = conn.cursor()
+  c.execute("SELECT datetime(timestamp, 'unixepoch'), dialog_partner, author, "+\
+            "body_xml FROM messages;")
+  print '\n[:] Messages Found: '
+  for row in c:
+    try:
+      if 'partlist' not in str(row[3]):
+        if str(row[1]) != str(row[2]):
+	  msgDirection = 'To %s :' %(str(row[1]))
+	else:
+	  msgDirection = 'From %s :' %(str(row[2]))
+	print 'Time: %s : %s  -> %s' %(str(row[0]), msgDirection, row[3])
+    except:
+      pass
+
+
 def main():
   skypeDB = 'main.db'
   printProfile(skypeDB)
   printContacts(skypeDB)
+  printCallLog(skypeDB)
+  printMessages(skypeDB)
 
 if __name__ == '__main__':
   main()
