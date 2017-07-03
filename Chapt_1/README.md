@@ -1,8 +1,10 @@
 # Vulnerability Scanner  
 This is the first exercise proposed in this chapter.
-It uses the socket library to perform a TCP connection to an address and port number.
+It uses the socket library to perform a TCP connection to an address and port
+number.
 
-The solution provided by the book _1-vulnScanner.py_ has the following performance when scanning over 14 hosts,
+The solution provided by the book _1-vulnScanner.py_ has the following
+performance when scanning over 14 hosts,
 ```
 Total time to execute was: 101.722756863 seconds
 
@@ -23,7 +25,8 @@ Total time to execute was: 101.722756863 seconds
          instancemethod |          -1 |    -80     B
 ```
 
-The solution proposed by me has the following performance over the same number of hosts  
+The solution proposed by me _vulnscann.py_ has the following performance over
+the same number of hosts  
 ```
 Total time to execute was: 102.96117617600248 seconds
 
@@ -43,4 +46,7 @@ Total time to execute was: 102.96117617600248 seconds
   <class 'mypack.fileops.FileReader |           1 |     56     B
                      <class 'method |          -1 |    -64     B
 ```
-The execution time and memory usage in both cases is similar (the book's proposed solution is slightly better), however my proposed solution implements argument parsing and makes use of the ipaddress module to validate and generate the list of hosts to scan.
+The execution time and memory usage in both cases is similar (the book's
+proposed solution is slightly better), however my proposed solution implements
+argument parsing and makes use of the ipaddress module to validate and
+generate the list of hosts to scan.
