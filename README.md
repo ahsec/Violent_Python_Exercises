@@ -8,3 +8,5 @@ This is presented as a learning exercise, please refer to the **LICENSE** file i
 Finally, I'd like to thank TJ O'Connor for writing the Violent Python Book, which has been an important piece in career.  
 
 By presenting this work I'm merely trying to apply new concepts to an already amazing work.    
+
+All exercises' solutions proposed in the book can be found [here.](https://booksite.elsevier.com/9781597499576/chapters.php)
