@@ -38,14 +38,8 @@ def main():
     passwords = fileops.FileReader(fname_dic)
     zfile = zipfile.ZipFile(fname_zip)
     for password in passwords:
-#        try:
         t = Thread(target=extract_zip, args=(zfile, password))
         t.start()
-#            zfile.extractall(pwd=str.encode(password))
-#        except RuntimeError:
-#            pass
-#        else:
-#            print('ZIP file extracted with password: {}'.format(password))
 
     t2 = timeit.default_timer()
     tr.print_diff()
