@@ -120,23 +120,23 @@ This exercise intends to implement a dictionary attack (dictionary file __4090-w
 The book's proposed solution file __3-zipCrack.py__ has the following benchmarks.
 ``` shell
 $ python 3-zipCrack.py -f evil.zip -d 4090-worst-passwords.txt
-types |   # objects |   total size
-============================== | =========== | ============
- list |        1775 |    180.59 KB
-  str |        1789 |    101.32 KB
- dict |          13 |      8.05 KB
-  int |         176 |      4.12 KB
-builtin_function_or_method |          11 |    792     B
-wrapper_descriptor |           9 |    720     B
-<class zipfile.ZipInfo |           2 |    400     B
-tuple |           5 |    352     B
- file |           2 |    288     B
-getset_descriptor |           4 |    288     B
+types                       |   # objects |   total size
+=========================== | =========== | ============
+ list                       |        1775 |    180.59 KB
+  str                       |        1789 |    101.32 KB
+ dict                       |          13 |      8.05 KB
+  int                       |         176 |      4.12 KB
+builtin_function_or_method  |          11 |    792     B
+wrapper_descriptor          |           9 |    720     B
+<class zipfile.ZipInfo      |           2 |    400     B
+tuple                       |           5 |    352     B
+ file                       |           2 |    288     B
+getset_descriptor           |           4 |    288     B
 <class threading._Condition |           4 |    256     B
-member_descriptor |           3 |    216     B
-weakref |           2 |    176     B
-thread.lock |           4 |    128     B
-<class threading.Thread |           2 |    128     B
+member_descriptor           |           3 |    216     B
+weakref                     |           2 |    176     B
+thread.lock                 |           4 |    128     B
+<class threading.Thread     |           2 |    128     B
 
 Total time to execute: 2.34107589722 seconds
 [+] Found password secret
