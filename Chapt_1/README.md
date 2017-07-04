@@ -5,7 +5,7 @@ number.
 
 The solution provided by the book __1-vulnScanner.py__ has the following
 performance when scanning over 14 hosts,
-```
+``` bash 
 Total time to execute was: 101.722756863 seconds
 
                   types |   # objects |   total size
@@ -27,24 +27,24 @@ Total time to execute was: 101.722756863 seconds
 
 The solution proposed by me __vulnscann.py__ has the following performance over
 the same number of hosts  
-```
+``` bash  
 Total time to execute was: 102.96117617600248 seconds
 
                               types |   # objects |   total size
 =================================== | =========== | ============
-                       <class 'list |        2136 |    201.72 KB
-                        <class 'str |        2138 |    148.27 KB
-                        <class 'int |         379 |     10.38 KB
-                       <class 'code |           3 |    432     B
-                       <class 'dict |           2 |    288     B
-      <class 'ipaddress.IPv4Address |           4 |    224     B
-                  <class 'generator |           2 |    176     B
+                       <class list |        2136 |    201.72 KB
+                        <class str |        2138 |    148.27 KB
+                        <class int |         379 |     10.38 KB
+                       <class code |           3 |    432     B
+                       <class dict |           2 |    288     B
+      <class ipaddress.IPv4Address |           4 |    224     B
+                  <class generator |           2 |    176     B
               function (store_info) |           1 |    136     B
-                       <class 'cell |           2 |     96     B
-                      <class 'tuple |           1 |     72     B
-      <class 'ipaddress.IPv4Network |           1 |     56     B
-  <class 'mypack.fileops.FileReader |           1 |     56     B
-                     <class 'method |          -1 |    -64     B
+                       <class cell |           2 |     96     B
+                      <class tuple |           1 |     72     B
+      <class ipaddress.IPv4Network |           1 |     56     B
+  <class mypack.fileops.FileReader |           1 |     56     B
+                     <class method |          -1 |    -64     B
 ```
 The execution time and memory usage in both cases is similar (the book's
 proposed solution is slightly better), however my proposed solution implements
@@ -108,6 +108,7 @@ python3 shadow_breaker.py -s a_shadow -d 500-worst-passwords.txt
   <class encodings.utf_8.IncrementalDecoder |           1 |     56     B
        <class _io.IncrementalNewlineDecoder |           1 |     40     B
                                <class bytes |           1 |     39     B
+
 Total time to execute: 0.29569214599905536 seconds
 ```
 Execution time difference is 0.075 seconds, the added functionality increases the memory usage to a total of ~366 KB against the ~246 KB of the original solution.
