@@ -5,7 +5,7 @@ number.
 
 The solution provided by the book __1-vulnScanner.py__ has the following
 performance when scanning over 14 hosts,
-``` bash 
+``` bash
 Total time to execute was: 101.722756863 seconds
 
                   types |   # objects |   total size
@@ -55,7 +55,7 @@ generate the list of hosts to scan.
 
 The book proposes the challenge of performing a dictionary attack on a UNIX shadow file. [Wikipedia](https://en.wikipedia.org/wiki/Passwd#Shadow_file) has a good entry on the shadow file structure, including hashing algorithm and salt, both necessary to understand for this exercise.
 
-For both the book's and mine solution, the password was located at the bottom of the __500-worst-passwords.txt__ file.
+For both the book's and mine solution, the password was located at the bottom of the __4090-worst-passwords.txt__ file.
 
 The book's proposed solution stores the passwords to recover in the file __passwords.txt__  
 ``` bash
@@ -109,6 +109,63 @@ python3 shadow_breaker.py -s a_shadow -d 500-worst-passwords.txt
        <class _io.IncrementalNewlineDecoder |           1 |     40     B
                                <class bytes |           1 |     39     B
 
+
 Total time to execute: 0.29569214599905536 seconds
 ```
-Execution time difference is 0.075 seconds, the added functionality increases the memory usage to a total of ~366 KB against the ~246 KB of the original solution.
+Execution time difference is 0.075 seconds, the added functionality increases the memory usage to a total of ~366 KB against the ~246 KB of the original solution.  
+
+# ZIP File password dictionary attack  
+This exercise intends to implement a dictionary attack (dictionary file __4090-worst-passwords.txt__) on a password protected ZIP file (__evil.zip__), it adds to the previous ones by introducing multi-threading.
+
+The book's proposed solution file __3-zipCrack.py__ has the following benchmarks.
+``` shell
+$ python 3-zipCrack.py -f evil.zip -d 4090-worst-passwords.txt
+types |   # objects |   total size
+============================== | =========== | ============
+ list |        1775 |    180.59 KB
+  str |        1789 |    101.32 KB
+ dict |          13 |      8.05 KB
+  int |         176 |      4.12 KB
+builtin_function_or_method |          11 |    792     B
+wrapper_descriptor |           9 |    720     B
+<class zipfile.ZipInfo |           2 |    400     B
+tuple |           5 |    352     B
+ file |           2 |    288     B
+getset_descriptor |           4 |    288     B
+<class threading._Condition |           4 |    256     B
+member_descriptor |           3 |    216     B
+weakref |           2 |    176     B
+thread.lock |           4 |    128     B
+<class threading.Thread |           2 |    128     B
+
+Total time to execute: 2.34107589722 seconds
+[+] Found password secret
+```  
+
+My proposed solution __zip_breaker.py__ has the following,
+``` bash
+$ python3 zip_breaker.py -z evil.zip -d 4090-worst-passwords.txt
+                               types |   # objects |   total size
+==================================== | =========== | ============
+                        <class dict |        7501 |      1.30 MB
+           <class collections.deque |        1873 |      1.13 MB
+  <class builtin_function_or_method |        7493 |    526.85 KB
+                        <class list |        4058 |    383.51 KB
+                         <class str |        5940 |    363.24 KB
+                       <class tuple |        5629 |    337.23 KB
+                     <class weakref |        3751 |    293.05 KB
+                      <class method |        3747 |    234.19 KB
+                <class _thread.lock |        3746 |    146.33 KB
+         <class zipfile._SharedFile |        1873 |    102.43 KB
+         <class threading.Condition |        1873 |    102.43 KB
+               <class list_iterator |        1873 |    102.43 KB
+             <class threading.Event |        1873 |    102.43 KB
+            <class threading.Thread |        1873 |    102.43 KB
+                        <class cell |        1875 |     87.89 KB
+
+Total time to execute: 2.163734988993383 seconds
+ZIP file extracted with password: secret
+```  
+
+Execution times are very close with a small difference of 0.18 seconds.
+Both scripts were executed against the same ZIP file and used the same dictionary file.

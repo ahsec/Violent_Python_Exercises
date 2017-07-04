@@ -1,7 +1,13 @@
 # Violent Python Exercises  
 This repository focuses on proposing new solutions for the exercises in the book Violent Python, A cookbook for hackers, Penetration Testers, and Security Engineers by TJ. O'Connor. ISBN: 978-1-59749-957-6
 
-A comparison between the book's solution and my proposed solution will be shown with the objective of determining which is the most efficient in terms of memory usage and performance.
+A comparison between the book's solution and my proposed solution will be presented. I'm doing this as a learning exercise on the following topics:
+  * Migrating code from python 2 to 3  
+  * Applying generators  
+  * Applying Functional programming
+  * Providing a benchmark for both the book's proposed solution and mine.
+
+I am aware that a comparison between the benchmarks will not be straightforward given that I'll add functionality to most of the solutions and I'll be using python3 to code my solutions, instead of python2 which is used in the book.
 
 This is presented as a learning exercise, please refer to the **LICENSE** file in this repository for licensing and usage questions, applicable to the code created by me, only.
 
