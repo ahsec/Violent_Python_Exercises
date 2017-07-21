@@ -28,3 +28,22 @@ My proposed solution filename: nmap_scan.py
 The only difference between both solutions is that the later prints the whole
 nmap output to the screen, including the arguments, scan details and scan
 results. The former prints the results only.
+
+## Exercise 3  
+For this exercise, the book introduces both pexpect and pxssh libraries.
+It then proposes the idea of a Dictionary attack on a SSH server using those
+libraries.  
+
+Books proposed solutions are:
+* 3-botNet.py
+* 3-pxsshCommand.py
+* 3-sshBrute.py
+* 3-sshCommand.py
+
+My proposed solution uses paramiko instead. I decided to use paramiko due to its
+popularity. Due to these exercises using different libraries for establishing
+SSH connections, I'm not presenting benchmarks for this.
+
+My proposed solution is: ssh_dict_atck.py
+
+## Exercise 4
