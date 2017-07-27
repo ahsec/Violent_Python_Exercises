@@ -47,3 +47,21 @@ SSH connections, I'm not presenting benchmarks for this.
 My proposed solution is: ssh_dict_atck.py
 
 ## Exercise 4
+
+The book proposes the exercise of, given a list of FTP servers, attempt to
+locate anonymous enabled serves, retrieve a list of the existing files and if
+any web file (.html, .htm, .php, ...) is found, such file is modified to add
+a malicious iframe that redirects to a handler listening for incoming
+connections.
+
+Book's proposed solution:
+ * 4-anonLogin.py  
+ * 4-bruteLogin.py
+ * 4-defaultPages.py  
+ * 4-injectPage.py  
+ * 4-massCompromise.py  
+
+My solution looks for a PHP file in the FTP directory, if found, it uploads a
+HTML file that contains a PHP shell script. An attacker can the use the web
+shell to run commands on the server.  
+ * ftp_web_attck.py
