@@ -18,4 +18,11 @@ available to process by part 1.
 Book's proposed solution: ___4-exifFetch.py___  
 My proposed solution: ___ImageDownloader.py___
 
-3. 
+## Exercise 3. Parsing Firefox Sqlite3 Databases with Python  
+This exercise demonstrates data extraction from a sqlite3 database.  
+Book's proposed solution: ___6-firefoxParse.py___  
+My proposed solution: ___sqlite-info.py___
+
+* Additional file for this exercise: ___cookies.sqlite___  
+My proposed solution is database scheme agnostic and can be applied to almost
+any sqlite database file.
