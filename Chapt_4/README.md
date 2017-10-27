@@ -28,6 +28,6 @@ The following details about the DNS traffic are then printed,
 * Domain queried
 * IP address or addresses returned from the query or queries  
 
-Having multiple unrelated addresses pointing at the same domain could be a indication of Fast Flux traffic.
+Having multiple DNS requests that frequently return unrelated addresses could be a indication of Fast Flux traffic, specifically domain flux.
 
 Filename for this solution is, domain_count.py
