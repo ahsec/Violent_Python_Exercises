@@ -14,17 +14,25 @@ class Capture(object):
     def __init__(self, fname):
         self.fname = fname
         self.pkts = scapy.all.rdpcap(self.fname)
-        self.dns_info = defaultdict(list)
+        self.dns_info, self.dns_fails = self.get_dns_records()
     def get_dns_records(self):
+        dns_info = defaultdict(list)
+        dns_fails = []
         for pkt in self.pkts:
             if pkt.haslayer(scapy.all.DNSRR):
-                rrname = pkt.getlayer(scapy.all.DNSRR).rrname
-                rdata = pkt.getlayer(scapy.all.DNSRR).rdata
-                try:
-                    self.dns_info[rrname.decode('utf-8')].append(rdata)
-                except UnicodeDecodeError:
-                    self.dns_info[rrname.decode('utf-8')].append('ERROR')
-        return self.dns_info
+                rcode = pkt.getlayer(scapy.all.DNS).rcode
+                qname = pkt.getlayer(scapy.all.DNSQR).qname
+                if rcode == 3:
+                    # Failed DNS request
+                    dns_fails.append(qname)
+                else:
+                    rrname = pkt.getlayer(scapy.all.DNSRR).rrname
+                    rdata = pkt.getlayer(scapy.all.DNSRR).rdata
+                    try:
+                        dns_info[rrname.decode('utf-8')].append(rdata)
+                    except UnicodeDecodeError:
+                        dns_info[rrname.decode('utf-8')].append('ERROR')
+        return dns_info, dns_fails
 
 def main():
     parser = argparse.ArgumentParser(description='''Reads packets from a given
@@ -37,9 +45,10 @@ def main():
 
     capture = Capture(pcap_fname)
     dns_entries = capture.get_dns_records()
-    for key, value in dns_entries.items():
+    for key, value in capture.dns_info.items():
         print('Domain: {} resolved to {} different addresses.'.format(key, len(value)))
-#    pprint(dns_entries)
+    print("\n##### Possible domains for which DNS req didn't return a valid address")
+    pprint(capture.dns_fails)
 
 if __name__ == '__main__':
     main()

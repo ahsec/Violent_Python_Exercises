@@ -21,12 +21,14 @@ through the command line) on HTTP traffic or a source/destination port number on
 any type of TCP/UDP traffic. It then prints any packet(s) that match these
 characteristics.
 
-## Exercise 4 - Detecting Fast Flux Traffic with Scapy  
+## Exercise 4 & 5 - Detecting Fast Flux Traffic with Scapy  
 In this exercise a pcap file is provided (___domainFLux.pcap___). The pcap file
 is analyzed in search of DNS requests and responses.  
 The following details about the DNS traffic are then printed,
 * Domain queried
 * IP address or addresses returned from the query or queries  
+
+Additionaly it also returns a list of all the domains for which DNS couldn't return a valid address. Multiple and similar domains constantly failing is an indicative of domain flux traffic.
 
 Having multiple DNS requests that frequently return unrelated addresses could be a indication of Fast Flux traffic, specifically domain flux.
 
