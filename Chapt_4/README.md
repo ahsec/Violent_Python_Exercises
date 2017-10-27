@@ -19,4 +19,15 @@ destination. It then flags the packets that match either of those characteristic
 pcap_parse.py parses a pcap file looking for a string (that can be specified
 through the command line) on HTTP traffic or a source/destination port number on
 any type of TCP/UDP traffic. It then prints any packet(s) that match these
-characteristics
+characteristics.
+
+## Exercise 4 - Detecting Fast Flux Traffic with Scapy  
+In this exercise a pcap file is provided (___domainFLux.pcap___). The pcap file
+is analyzed in search of DNS requests and responses.  
+The following details about the DNS traffic are then printed,
+* Domain queried
+* IP address or addresses returned from the query or queries  
+
+Having multiple unrelated addresses pointing at the same domain could be a indication of Fast Flux traffic.
+
+Filename for this solution is, domain_count.py
